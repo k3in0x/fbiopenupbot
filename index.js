@@ -1,10 +1,9 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-module.exports = {
-    client: client
-};
 
-const commands = [
+module.exports = client;
+
+/*const commands = [
     {
         name: "%image [phrase] <`index`/random/first/last>", 
         description: "Searches for images in Google and displays the image on the given index. If none is given, the first one.",
@@ -209,14 +208,14 @@ const commands = [
     },
     {
         name: "%discriminator <user>",
-        description: "Does funny math to your or the given user's discriminator.",
+        description: "Does **funny** math to your or the given user's discriminator.",
         topic: "fun",
         example: {
             input: "%discriminator @Doge#5999",
             output: "5999 - 5999 = 0 + 6969 = 6969 = Doge#6969 LMAO"
         }
     }
-];
+];*/
 
 const file = require("./userinfo.json");
 const botconfig = require("./botconfig.json");
