@@ -1,7 +1,11 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
+const fs = require("file-system");
+
 module.exports = client;
+
+const mapWhichFinnaBeAdb = new Map();
 
 /*const commands = [
     {
@@ -253,10 +257,18 @@ client.on('ready', () => {
     client.guilds.array().forEach(function(g){
         g.members.array().forEach(function(m){
             if (!file[m.user.id]) {
-                file[m.user.id] = {
+                file[m.user.id] = new Proxy({
                     bal: 1000, 
                     rpg: new rpg.Rpg()
-                };
+                }, {
+                    set: function(obj, prop, val) {
+                        obj[prop] = val;
+                        
+                        mapWhichFinnaBeAdb.set(prop, val);
+                        
+                        return true;
+                    }
+                });
                 file[m.user.id].rpg.setUp(m.user);
             }
         });
@@ -321,18 +333,6 @@ client.on("guildCreate", guild => {
 
     if (tyFAC) {
         tyFAC.send("**Le dead meme Discord bot has arrived!**\nMy prefix is `%`. Type `%help` for some general info and commands. If you'd like to get a better experience with the bot, create a webhook called `Doge` in " + guild.name);
-    }
-});
-
-client.on("message", msg => {
-    const usr = msg.author.id;
-
-    if (!file[usr]) {
-        file[usr] = {
-            bal: 1000, 
-            rpg: new rpg.Rpg()
-        };
-        file[usr].rpg.setUp(msg.author);
     }
 });
 
