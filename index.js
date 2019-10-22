@@ -1,8 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
-const fs = require("file-system");
-
 module.exports = client;
 
 const mapWhichFinnaBeAdb = new Map();
