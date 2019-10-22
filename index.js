@@ -280,54 +280,6 @@ client.on('ready', () => {
     ai.setUp(client);
 });
 
-client.on("guildMemberAdd", m => {
-    const g = m.guild;
-    const cat = g.channels.find(gc => gc.type === "category" && gc.name === "server count");
-
-    if (!cat) {
-        return;
-    } 
-
-    cat.children.array().forEach(c => {
-        if (m.user.bot) {
-            if (c.name.includes("Bots: ")) {
-                c.edit({name: "Bots: " + (parseInt(c.name) + 1)});
-            }
-        } else {
-            if (c.name.includes("Users: ")) {
-                c.edit({name: "Users: " + (parseInt(c.name) + 1)});
-            }
-        }
-        if (c.name.includes("Members: ")) {
-            c.edit({name: "Members: " + (parseInt(c.name) + 1)});
-        }
-    });
-});
-
-client.on("guildMemberRemove", m => {
-    const g = m.guild;
-    const cat = g.channels.find(gc => gc.type === "category" && gc.name === "server count");
-
-    if (!cat) {
-        return;
-    } 
-
-    cat.children.array().forEach(c => {
-        if (m.user.bot) {
-            if (c.name.includes("Bots: ")) {
-                c.edit({name: "Bots: " + (parseInt(c.name, 10) - 1)});
-            }
-        } else {
-            if (c.name.includes("Users: ")) {
-                c.edit({name: "Users: " + (parseInt(c.name, 10) - 1)});
-            }
-        }
-        if (c.name.includes("Members: ")) {
-            c.edit({name: "Members: " + (parseInt(c.name, 10) - 1)});
-        } 
-    });
-});
-
 client.on("guildCreate", guild => {
     const tyFAC = guild.channels.find(n => n.name === "general");
 
@@ -338,28 +290,22 @@ client.on("guildCreate", guild => {
 
 client.on('message', async (msg) => {
     if (!msg.guild) {
-        return false;
+        return;
     }
     if (msg.author.bot && msg.author.id !== client.user.id) {
-        return false;
+        return;
     }
     if (msg.content.charAt(0) !== "%") {
-        return false;
+        return;
     }
 
     let args = msg.content.substring("%".length).split(" ");
     
-    await cmds[args[0].toLowerCase()](msg, args, args.slice(1, args.length).join(" "), commands);
-
     try {
-        runCommand[args[0].toLowerCase()](msg, args, args.slice(1, args.length).join(" "), commands);
+        require("./commands/" + args[0].toLowerCase() + ".js").run(msg, args, args.slice(1, args.length).join(" "));
     } catch (err) {
         console.log(msg.author.tag + " is gay");
     }
 });
-
-function runCommand (msg, args, cont) {
-    //later lol
-}
 
 client.login(process.env.BOT_TOKEN);
