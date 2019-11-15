@@ -1,7 +1,7 @@
 module.exports = {
-    run: weeb = function (msg, args, text) {
+    run: function (msg, args, text) {
     	if (!text) {
-        	return msg.channel.send("Much confusion OWO");
+			text = "You need to give text";
    		}
 
     	let textToArr = text.split(" ");
