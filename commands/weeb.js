@@ -1,4 +1,13 @@
 module.exports = {
+	name: "weeb",
+	description: "Makes text look like it's sent by a fuggin weeb",
+	usage: "%weeb [text]",
+	type: "text",
+	usage: {
+		input: "%weeb 1s3k3b0t is the best",
+		output: "1-1s3k3b0t ᵘʷᵘ is t-the best OWO"
+	},
+		
     run: function (msg, args, text) {
     	if (!text) {
 			text = "You need to give text";
