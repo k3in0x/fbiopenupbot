@@ -1,7 +1,7 @@
 module.exports = {
     run: function (msg, args, txt) {
         if (!txt) {
-            return msg.channel.send("Much c0nfu510n");
+            txt = "You need to give text";
         }
 
         let textToArr = txt.split("");
