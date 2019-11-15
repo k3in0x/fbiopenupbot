@@ -1,4 +1,12 @@
 module.exports = {
+    name: "leet",
+    description: "\"Leetifies\" text: replaces letters with numbers.",
+    usage: "%leet [text]",
+    example: {
+        input: "%leet isekebot is the best",
+        output: "153k3507 15 7h3 5357"
+    },
+    
     run: function (msg, args, txt) {
         if (!txt) {
             txt = "You need to give text";
@@ -7,8 +15,8 @@ module.exports = {
         let textToArr = txt.split("");
         let finArr = "";
 
-        textToArr.forEach(function(v, index) {
-            v = v.toLowerCase();
+        textToArr.forEach(function(va, index) {
+            const v = va.toLowerCase();
 
             if (v === "i" || v === "l") {
                 finArr += "1";
@@ -22,7 +30,7 @@ module.exports = {
                 finArr += "3";
                 return;
             }
-            if (value === "G") {
+            if (va === "G") {
                 finArr += "6";
                 return;
             }
@@ -54,9 +62,9 @@ module.exports = {
                 finArr += "4";
                 return;
             }
-            finArr.push(value);
+            finArr += (value);
         });
 
-        msg.channel.send(finArr);
+        return msg.channel.send(finArr);
     }
 };
