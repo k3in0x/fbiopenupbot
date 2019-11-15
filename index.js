@@ -300,7 +300,7 @@ client.on('message', async (msg) => {
     let args = msg.content.substring("%".length).split(" ");
     
     try {
-        require("./commands/" + args[0].toLowerCase() + ".js").run(msg, args, args.slice(1, args.length).join(" "));
+        require("./commands/" + args[0].toLowerCase() + ".js").run(msg, args, args.slice(1, args.length).join(" "), client);
     } catch (err) {
         console.log(msg.author.tag + " is gay");
     }
