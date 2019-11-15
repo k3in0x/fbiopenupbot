@@ -2,6 +2,7 @@ module.exports = {
     name: "leet",
     description: "\"Leetifies\" text: replaces letters with numbers.",
     usage: "%leet [text]",
+    type: "text",
     example: {
         input: "%leet isekebot is the best",
         output: "153k3507 15 7h3 5357"
