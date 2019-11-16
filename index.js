@@ -255,7 +255,7 @@ client.on('message', async (msg) => {
 });
 
 async function helpCmd (msg) {
-    const readdir = require("util").promisify(require("fs").readdir));
+    const readdir = require("util").promisify(require("fs").readdir);
     
     const cmds = (await readdir("./commands")).map(f => require("./commands/" + f)).filter(c => !c.devonly);
     
