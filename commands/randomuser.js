@@ -38,7 +38,6 @@ module.exports = {
         .setThumbnail(m.avatarURL)
         .addField("Username:", m.tag)
         .addField("ID:", m.id)
-        .addBlankField()
         .addField("Nickname:", (mm.nickname ? mm.nickname : "none"))
         .addField("Roles:", (userroles.join(", ") ? userroles.join(", ") : "none"))
         .setColor(usercolor)
