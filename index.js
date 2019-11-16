@@ -253,15 +253,13 @@ client.on('message', async (msg) => {
     }
 });
 
-function helpCmd (msg) {
+async function helpCmd (msg) {
     const fs = require("fs");
     
     let cmds;
-    fs.readdir("./commands", (_, files) => {
-        cmds = files.map(f => require("./commands/" + f));
+    await fs.readdir("./commands", (_, files) => {
+        cmds = files.map(f => require("./commands/" + f)).filter(c => !c.devonly);
     });
-    
-    console.log(cmds);
     
     const textCmds = cmds.filter(c => c.type === "text");
     const utilCmds = cmds.filter(c => c.type === "util");
