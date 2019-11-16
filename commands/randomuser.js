@@ -39,8 +39,8 @@ module.exports = {
         .addField("Username:", m.tag)
         .addField("ID:", m.id)
         .addBlankField()
-        .addField("Nickname:", (mm.nickname !== null ? mm.nickname : m.username))
-        .addField("Roles:", userroles.join(", "))
+        .addField("Nickname:", (mm.nickname ? mm.nickname : "none"))
+        //.addField("Roles:", userroles.join(", "))
         .setColor(usercolor)
         .setFooter("Requested by " + msg.author.tag);
 
