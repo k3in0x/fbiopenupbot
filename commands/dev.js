@@ -23,7 +23,7 @@ async function evaluate (msg, str) {
         evaled = typeof evaled.then === "function" ? await evaled : evaled;
         const evaledText = typeof evaled === "string" ? evaled : require("util").inspect(evaled, {depth: 1});
         em.addField("Success", `\`\`\`js\n${evaledText}\n\`\`\``);
-        em.addField("00ff00");
+        em.setColor("00ff00");
     } catch (e) {
         em.addField("Error", `\`\`\`\n${e.stack}\n\`\`\``);
         em.setColor("ff0000");
