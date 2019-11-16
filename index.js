@@ -241,7 +241,8 @@ client.on('message', async (msg) => {
     
     try {
         if (args[0].toLowerCase() === "help") {
-            helpCmd(msg);
+            await helpCmd(msg);
+            return;
         }
         
         require("./commands/" + args[0].toLowerCase() + ".js").run(msg, args, args.slice(1, args.length).join(" "), client);
