@@ -288,6 +288,8 @@ async function helpCmd (msg) {
     funCmds.forEach(c => {
         em.addField(c.name, "Usage: " + c.usage + "\nDescription: " + c.description + (c.example ? "\nExample:\nInput: `" + c.example.input + "`\n`Output: " + c.example.output + "`": ""));
     });
+    
+    msg.channel.send({embed: em});
 }
  
 client.login(process.env.BOT_TOKEN);
