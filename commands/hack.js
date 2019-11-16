@@ -8,7 +8,7 @@ module.exports = {
         const randomDM = random(["Yea, 4 hotdogs can fit in my bum", "Oooo nice nudes", "No, mine is 2 inches", "Oh my god sameeeeee 😱😱😱😂😂😂👍👍👍", "Thanks mom"]);
         const randomServer = random(["Fuck you all AHHHHAHAHA", "Oh my god sameeeeee 😱😱😱😂😂😂👍👍👍", (user.id !== msg.author.id ? msg.author.username + "'s nudes.png" : randomUser().username + "'s nudes.png")]);
         const randomUsed = random(["2 inches", "small size"]);
-        const randomEmail = random([usernameForm(user.username) + "@pornhub.com", usernameForm(user.username) + "IsHorny@gmail.com", "notAvirgin@msn.com", usernameFrom(user.username) + "@animators.hentaiheaven.org"]);
+        const randomEmail = random([usernameForm(user.username) + "@pornhub.com", usernameForm(user.username) + "IsHorny@gmail.com", "notAvirgin@msn.com", usernameForm(user.username) + "@animators.hentaiheaven.org"]);
         const randomPassword = random(["123456789", "69", "password123", "incorrect"]);
     
         let currentState = 1;
