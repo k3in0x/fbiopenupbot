@@ -1,4 +1,9 @@
 module.exports = {
+    name: "hack",
+    description: "Makes up a bunch of funny info about the given user, or you",
+    usage: "%hack <user>",
+    type: "fun",
+    
     run: function(msg){
         const random = (arr) => arr[Math.floor(Math.random() * arr.length)];
         const randomUser = () => random(msg.guild.members.array()).user;
