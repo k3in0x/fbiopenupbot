@@ -1,7 +1,7 @@
 module.exports = {
     run: function(msg){
         const random = (arr) => arr[Math.floor(Math.random() * arr.length)];
-        const randomUser = () => random(msg.guild.members).user;
+        const randomUser = () => random(msg.guild.members.array()).user;
     
         const user = (msg.mentions.users.first() ? msg.mentions.users.first() : msg.author);
     
