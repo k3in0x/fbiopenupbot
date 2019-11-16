@@ -248,7 +248,7 @@ client.on('message', async (msg) => {
     } catch (err) {
         if (!(typeof err === "Error" && `${err}`.includes("Cannot find module"))) {
             if (msg.author.id !== "576083686055739394") msg.channel.send("Sorry, there was an error running that command. The shitty dev is notified!");
-            (await client.fetchUser("576083686055739394")).send("There was an error running\n```" + msg.content + "```\n, ran by **" + msg.author.tag + "**:\n```" + err.stack + "```");
+            (await client.fetchUser("576083686055739394")).send("There was an error running\n```" + msg.content + "```\nran by **" + msg.author.tag + "**:\n```" + err.stack + "```");
         }
     }
 });
