@@ -268,25 +268,25 @@ async function helpCmd (msg) {
     const em = new Discord.RichEmbed()
     .setTitle("Help")
     .addField("Text commands", "\u200b")
-    .addBlankField()
-    .setFooter("[] - required\n<> - optional");
+    .setFooter("[] - required\n<> - optional")
+    .setColor("RANDOM");
     
     textCmds.forEach(c => {
-        em.addField(c.name, "Usage: " + c.usage + "\nDescription: " + c.description + (c.example ? "\nExample:\nInput: `" + c.example.input + "`\n`Output: " + c.example.output + "`": ""));
+        em.addField(c.name[0].toUpperCase() + c.name.substring(1), "Usage: " + c.usage + "\n\nDescription: " + c.description + (c.example ? "\n\nExample:\nInput: `" + c.example.input + "``\n`Output: " + c.example.output + "`": ""));
     });
     
-    em.addField("Util commands", "\u200b")
-    .addBlankField();
+    em.addBlankField()
+    .addField("Util commands", "\u200b");
     
     utilCmds.forEach(c => {
-        em.addField(c.name, "Usage: " + c.usage + "\nDescription: " + c.description + (c.example ? "\nExample:\nInput: `" + c.example.input + "`\n`Output: " + c.example.output + "`": ""));
+        em.addField(c.name[0].toUpperCase() + c.name.substring(1), "Usage: " + c.usage + "\n\nDescription: " + c.description + (c.example ? "\n\nExample:\nInput: `" + c.example.input + "``\n`Output: " + c.example.output + "`": ""));
     });
     
-    em.addField("Fun commands", "\u200b")
-    .addBlankField();
+    em.addBlankField()
+    .addField("Fun commands", "\u200b");
         
     funCmds.forEach(c => {
-        em.addField(c.name, "Usage: " + c.usage + "\nDescription: " + c.description + (c.example ? "\nExample:\nInput: `" + c.example.input + "`\n`Output: " + c.example.output + "`": ""));
+        em.addField(c.name[0].toUpperCase() + c.name.substring(1), "Usage: " + c.usage + "\n\nDescription: " + c.description + (c.example ? "\n\nExample:\nInput: `" + c.example.input + "``\n`Output: " + c.example.output + "`": ""));
     });
     
     msg.channel.send({embed: em});
