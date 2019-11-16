@@ -259,7 +259,7 @@ async function helpCmd (msg) {
     
     const cmds = (await readdir("./commands")).map(f => require("./commands/" + f)).filter(c => !c.devonly);
     
-    await new Promise(r => setTimeout(r, 100)});
+    await new Promise(r => setTimeout(r, 100));
     
     const textCmds = cmds.filter(c => c.type === "text");
     const utilCmds = cmds.filter(c => c.type === "util");
