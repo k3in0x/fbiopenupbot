@@ -259,7 +259,6 @@ async function helpCmd (msg) {
     
     let cmds;
     await fs.readdir("./commands", async (_, files) => {
-        await files;
         cmds = files.map(f => require("./commands/" + f)).filter(c => !c.devonly);
     });
     
