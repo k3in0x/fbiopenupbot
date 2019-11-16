@@ -13,8 +13,6 @@ module.exports = {
         const userroles = [];
         const userrolesobj = [];
         const usercolor = mm.highestRole.hexColor;
-        
-        console.log(m);
 
         mm.roles.array().forEach(function(value) {
             if (value.name === "@everyone") {
@@ -32,6 +30,8 @@ module.exports = {
         if (mm.highestRole.hexColor === "GREY" && userroles[userroles.length - 2]) {
             usercolor = userrolesobj[userrolesobj.length - 2].hexColor;
         }
+        
+        console.log(userroles);
 
         const em = new Discord.RichEmbed() 
         .setTitle("Random user") 
