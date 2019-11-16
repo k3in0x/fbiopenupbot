@@ -3,8 +3,6 @@ const client = new Discord.Client();
 
 module.exports = client;
 
-const mapWhichFinnaBeAdb = new Map();
-
 /*const commands = [
     {
         name: "%image [phrase] <`index`/random/first/last>", 
@@ -218,8 +216,6 @@ const mapWhichFinnaBeAdb = new Map();
         }
     }
 ];*/
-
-const file = require("./userinfo.json");
 
 const PREFIX = '%';
 
