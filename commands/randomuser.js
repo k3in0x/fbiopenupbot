@@ -8,7 +8,7 @@ module.exports = {
 
     run: function (msg, args) {
         const g = msg.guild;
-        const mm = g.members.filter(m => (args[1].toLowerCase().includes("bot:false") ? !m.user.bot : (args[1].toLowerCase().includes("me:false") ? m.user.id !== msg.author.id : true)))).random();
+        const mm = g.members.filter(m => (args[1].toLowerCase().includes("bot:false") ? !m.user.bot : (args[1].toLowerCase().includes("me:false") ? m.user.id !== msg.author.id : true))).random();
         const m = mm.user;
         const userroles = [];
         const userrolesobj = [];
