@@ -9,7 +9,7 @@ module.exports = {
         
         switch (args[1]) {
             case "eval":
-                evaluate(msg, args.slice(1).join(""));
+                evaluate(msg, args.slice(2).join(""));
             break;
         }
     }
