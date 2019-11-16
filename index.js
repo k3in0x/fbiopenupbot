@@ -258,13 +258,14 @@ function helpCmd (msg) {
     
     let cmds;
     fs.readdir("./commands", (_, files) => {
-        cmds = files.map(f => require("./commands/" + f)).filter(c => !c.devonly);
+        cmds = files.map(f => require("./commands/" + f));
     });
     
     console.log(cmds);
     
     const textCmds = cmds.filter(c => c.type === "text");
     const utilCmds = cmds.filter(c => c.type === "util");
+    const funCmds = cmds.filter(c => c.type === "fun");
     
     const em = new Discord.RichEmbed()
     .setTitle("Help")
@@ -280,6 +281,13 @@ function helpCmd (msg) {
     .addBlankField();
     
     utilCmds.forEach(c => {
+        em.addField(c.name, "Usage: " + c.usage + "\nDescription: " + c.description + (c.example ? "\nExample:\nInput: `" + c.example.input + "`\n`Output: " + c.example.output + "`": ""));
+    });
+    
+    em.addField("Fun commands", "\u200b")
+    .addBlankField();
+        
+    funCmds.forEach(c => {
         em.addField(c.name, "Usage: " + c.usage + "\nDescription: " + c.description + (c.example ? "\nExample:\nInput: `" + c.example.input + "`\n`Output: " + c.example.output + "`": ""));
     });
 }
