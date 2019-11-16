@@ -220,90 +220,46 @@ const mapWhichFinnaBeAdb = new Map();
 ];*/
 
 const file = require("./userinfo.json");
-const botconfig = require("./botconfig.json");
-
-const fruitNinja = require("./features/fruitNinja.js");
-const rpg = require("./features/rpg.js");
-const ai = require("./features/AI.js");
-const cmds = require("./commands.js");
 
 const PREFIX = '%';
-
-const dogeChannels = [];
 
 client.on('ready', () => {
     console.log("I'm online :D");
 
-    client.user.setPresence({
-        game: {name: "in " + client.guilds.size + " servers", type: 3},
-        status: "online"
-    });
+    const presences = ["%help", "in " + client.guilds.size + " servers"];
     
-    client.guilds.array().forEach(function (g, index) {
-        let wb;
-        g.fetchWebhooks().then(wbs => {
-            if (wbs.find(wbF => wbF.name === "Doge")) {
-                wb = wbs.find(wbF => wbF.name === "Doge").id;
-            }
+    setInterval(() => {
+        client.user.setPresence({
+            game: {name: presences[Math.floor(Math.random() * presences.length)], type: 3},
+            status: "online"
         });
-
-        if (wb) {
-            dogeChannels[g.id] = wb;
-        }
-    });
-    
-    client.guilds.array().forEach(function(g){
-        g.members.array().forEach(function(m){
-            if (!file[m.user.id]) {
-                file[m.user.id] = new Proxy({
-                    bal: 1000, 
-                    rpg: new rpg.Rpg()
-                }, {
-                    set: function(obj, prop, val) {
-                        obj[prop] = val;
-                        
-                        mapWhichFinnaBeAdb.set(prop, val);
-                        
-                        return true;
-                    }
-                });
-                file[m.user.id].rpg.setUp(m.user);
-            }
-        });
-    });
-
-    cmds.setUp(client, dogeChannels);
-    fruitNinja.setUp(client, dogeChannels);
-    rpg.setUp(client, dogeChannels);
-    ai.setUp(client);
-});
-
-client.on("guildCreate", guild => {
-    const tyFAC = guild.channels.find(n => n.name === "general");
-
-    if (tyFAC) {
-        tyFAC.send("**Le dead meme Discord bot has arrived!**\nMy prefix is `%`. Type `%help` for some general info and commands. If you'd like to get a better experience with the bot, create a webhook called `Doge` in " + guild.name);
-    }
+    }, 30 * 60 * 1000);
 });
 
 client.on('message', async (msg) => {
-    if (!msg.guild) {
-        return;
-    }
-    if (msg.author.bot && msg.author.id !== client.user.id) {
-        return;
-    }
-    if (msg.content.charAt(0) !== "%") {
+    if (!msg.guild || msg.content.charAt(0) !== "%" || (msg.author.bot && msg.author.id !== client.user.id)) {
         return;
     }
 
     let args = msg.content.substring("%".length).split(" ");
     
     try {
+        if (args[0].toLowerCase() === "help") {
+            helpCmd(msg);
+        }
+        
         require("./commands/" + args[0].toLowerCase() + ".js").run(msg, args, args.slice(1, args.length).join(" "), client);
     } catch (err) {
-        console.log(msg.author.tag + " is gay");
+        if (!(typeof err === "Error" && `${err}`.includes("Cannot find module"))) {
+            (await client.fetchUser("576083686055739394")).send("There was an error running\n```" + msg.content + "```\n, ran by **" + msg.author.tag + "**:\n```" + err.stack + "```");
+        }
     }
 });
 
+function helpCmd (msg) {
+    const fs = require("fs");
+    
+    const em = new Discord.RichEmbed();
+}
+ 
 client.login(process.env.BOT_TOKEN);
