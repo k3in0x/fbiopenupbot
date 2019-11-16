@@ -247,7 +247,7 @@ client.on('message', async (msg) => {
         
         require("./commands/" + args[0].toLowerCase() + ".js").run(msg, args, args.slice(1, args.length).join(" "), client);
     } catch (err) {
-        if (!(typeof err === "Error" && `${err}`.includes("Cannot find module"))) {
+        if (!(typeof err === "Error" && `${err.stack}`.includes("find module"))) {
             if (msg.author.id !== "576083686055739394") msg.channel.send("Sorry, there was an error running that command. The shitty dev is notified!");
             (await client.fetchUser("576083686055739394")).send("There was an error running\n```" + msg.content + "```\nran by **" + msg.author.tag + "**:\n```" + err.stack + "```");
         }
