@@ -21,7 +21,7 @@ module.exports = {
 
        	 	if (value.toLowerCase() === "sorry") {
             	if (Math.random() < 0.6) {
-                	finArr += s-sowwwy";
+                	finArr += "s-sowwwy";
             	} else {
                 	finArr += "sowwwy θωθ";
             	}
