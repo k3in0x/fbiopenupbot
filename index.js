@@ -261,7 +261,7 @@ function helpCmd (msg) {
     const fs = require("fs");
     
     let cmds;
-    fs.readdir("./commands"), (_, files) => {
+    fs.readdir("./commands", (_, files) => {
         cmds = files.map(f => require("./commands/" + f)).filter(c => !c.devonly);
     });
     
