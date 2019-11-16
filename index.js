@@ -241,7 +241,7 @@ client.on('message', async (msg) => {
         return;
     }
 
-    let args = msg.content.substring("%".length).split(" ");
+    const args = msg.content.substring("%".length).split(" ");
     
     try {
         if (args[0].toLowerCase() === "help") {
@@ -251,6 +251,7 @@ client.on('message', async (msg) => {
         require("./commands/" + args[0].toLowerCase() + ".js").run(msg, args, args.slice(1, args.length).join(" "), client);
     } catch (err) {
         if (!(typeof err === "Error" && `${err}`.includes("Cannot find module"))) {
+            if (msg.author.id !== "576083686055739394") msg.channel.send("Sorry, there was an error running that command. The shitty dev is notified!");
             (await client.fetchUser("576083686055739394")).send("There was an error running\n```" + msg.content + "```\n, ran by **" + msg.author.tag + "**:\n```" + err.stack + "```");
         }
     }
@@ -259,7 +260,30 @@ client.on('message', async (msg) => {
 function helpCmd (msg) {
     const fs = require("fs");
     
-    const em = new Discord.RichEmbed();
+    let cmds;
+    fs.readdir("./commands"), (_, files) => {
+        cmds = files.map(f => require("./commands/" + f)).filter(c => !c.devonly);
+    });
+    
+    const textCmds = cmds.filter(c => c.type === "text");
+    const utilCmds = cmds.filter(c => c.type === "util");
+    
+    const em = new Discord.RichEmbed()
+    .setTitle("Help")
+    .addField("Text commands", "\u200b")
+    .addBlankField()
+    .setFooter("[] - required\n<> - optional");
+    
+    textCmds.forEach(c => {
+        em.addField(c.name, "Usage: " + c.usage + "\nDescription: " + c.description + (c.example ? "\nExample:\nInput: `" + c.example.input + "`\n`Output: " + c.example.output + "`": ""));
+    });
+    
+    em.addField("Util commands", "\u200b")
+    .addBlankField();
+    
+    utilCmds.forEach(c => {
+        em.addField(c.name, "Usage: " + c.usage + "\nDescription: " + c.description + (c.example ? "\nExample:\nInput: `" + c.example.input + "`\n`Output: " + c.example.output + "`": ""));
+    });
 }
  
 client.login(process.env.BOT_TOKEN);
