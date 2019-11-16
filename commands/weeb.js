@@ -45,9 +45,11 @@ module.exports = {
                 	finArr += value;
             	}
        		} 
-        	if (Math.random() < 0.4) {
+        	if (Math.random() < 0.3) {
             	finArr += "ᵘʷᵘ";
-        	}
+        	} else {
+			finArr += " ";
+		}
     	});
 
     	msg.channel.send(finArr);
