@@ -1,7 +1,7 @@
 {
-    "name": "doge-bot",
+    "name": "isekebot",
     "version": "69.69.420",
-    "description": "glxy's own fun bot!",
+    "description": "My Discord bot lmao",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
