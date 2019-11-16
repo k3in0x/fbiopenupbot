@@ -51,7 +51,7 @@ module.exports = {
                 finArr += "7";
                 return;
             }
-            if (value === "B") {
+            if (va === "B") {
                 finArr += "8";
                 return;
             }
@@ -63,7 +63,7 @@ module.exports = {
                 finArr += "4";
                 return;
             }
-            finArr += (value);
+            finArr += va;
         });
 
         return msg.channel.send(finArr);
