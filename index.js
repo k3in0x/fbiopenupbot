@@ -255,12 +255,11 @@ client.on('message', async (msg) => {
 });
 
 async function helpCmd (msg) {
-    const fs = require("fs");
+    const readdir = require("util").promisify(require("fs").readdir));
     
-    let cmds;
-    await fs.readdir("./commands", async (_, files) => {
-        cmds = files.map(f => require("./commands/" + f)).filter(c => !c.devonly);
-    });
+    const cmds = (await readdir("./commands")).map(f => require("./commands/" + f)).filter(c => !c.devonly);
+    
+    await new Promise(r => setTimeout(r, 100)});
     
     const textCmds = cmds.filter(c => c.type === "text");
     const utilCmds = cmds.filter(c => c.type === "util");
