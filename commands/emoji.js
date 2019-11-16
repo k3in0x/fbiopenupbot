@@ -6,7 +6,7 @@ module.exports = {
     
     run: function(msg, args) {
         const emoji = args[1];
-        const emojiID = args[1].split(":");
+        let emojiID = args[1].split(":");
 
         if (!emojiID[2] && msg.author.id !== "576083686055739394") {
             return msg.channel.send("You didn't give an emote!");
