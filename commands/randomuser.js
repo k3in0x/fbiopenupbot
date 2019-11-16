@@ -40,7 +40,7 @@ module.exports = {
         .addField("ID:", m.id)
         .addBlankField()
         .addField("Nickname:", (mm.nickname ? mm.nickname : "none"))
-        //.addField("Roles:", userroles.join(", "))
+        .addField("Roles:", (userroles.join(", ") ? userroles.join(", ") : "none"))
         .setColor(usercolor)
         .setFooter("Requested by " + msg.author.tag);
 
