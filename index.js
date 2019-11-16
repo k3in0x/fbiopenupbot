@@ -272,14 +272,14 @@ async function helpCmd (msg) {
     .setColor("RANDOM");
     
     textCmds.forEach(c => {
-        em.addField(c.name[0].toUpperCase() + c.name.substring(1), "Usage: `" + c.usage + "`\n\nDescription: " + c.description + (c.example ? "\n\nExample:\nInput: `" + c.example.input + "``\nOutput: `" + c.example.output + "`": ""));
+        em.addField(c.name[0].toUpperCase() + c.name.substring(1), "Usage: `" + c.usage + "`\n\nDescription: " + c.description + (c.example ? "\n\nExample:\nInput: `" + c.example.input + "`\nOutput: `" + c.example.output + "`": ""));
     });
     
     em.addBlankField()
     .addField("Util commands", "\u200b");
     
     utilCmds.forEach(c => {
-        em.addField(c.name[0].toUpperCase() + c.name.substring(1), "Usage: `" + c.usage + "`\n\nDescription: " + c.description + (c.example ? "\n\nExample:\nInput: `" + c.example.input + "``\nOutput: `" + c.example.output + "`": ""));
+        em.addField(c.name[0].toUpperCase() + c.name.substring(1), "Usage: `" + c.usage + "`\n\nDescription: " + c.description + (c.example ? "\n\nExample:\nInput: `" + c.example.input + "`\nOutput: `" + c.example.output + "`": ""));
     });
     
     em.addBlankField()
