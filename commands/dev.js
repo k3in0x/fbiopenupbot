@@ -41,7 +41,7 @@ async function evaluate (msg, str) {
     return msg.channel.send({embed: em});
 }
 
-asnyc function display (msg, str) {
+async function display (msg, str) {
     str = Discord.escapeMarkdown(str);
 
     try {
