@@ -17,9 +17,12 @@ module.exports = {
 };
 
 async function evaluate (msg, str) {
-    const em = new Discord.RichEmbed().setTitle("eval").addField("Code:", str);
+    const em = new Discord.RichEmbed()
+    .setTitle("eval")
+    .addField("Code:", "```" + str + "```");
 
     str = Discord.escapeMarkdown(str);
+    str = str.replace("```", "");
     
     try {
         let evaledText = "";
@@ -28,7 +31,7 @@ async function evaluate (msg, str) {
         };
         let evaled = eval(str);
         while (typeof evaled.then === "function") {
-            evaled = await evaled
+            evaled = await evaled;
         }
         evaledText += typeof evaled === "string" ? evaled : require("util").inspect(evaled, {depth: 1});
         em.addField("Success", `\`\`\`js\n${evaledText}\n\`\`\``);
