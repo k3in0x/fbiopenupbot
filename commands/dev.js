@@ -21,7 +21,6 @@ async function evaluate (msg, str) {
     .setTitle("eval")
     .addField("Code:", "```" + str + "```");
 
-    str = Discord.escapeMarkdown(str);
     str = str.replace("```", "");
     
     try {
@@ -52,7 +51,7 @@ async function display (msg, str) {
         while (typeof evaled.then === "function") {
             evaled = await evaled;
         }
-        let output = [...Discord.splitMessage(recursiveTextify(evaled))];
+        let output = [...Discord.splitMessage(recursiveTextify(evaled).join(":\n")).join("\n\n"))];
         output.map(message.channel.send);
     } catch (e) {
         return msg.channel.send(e.stack);
@@ -60,5 +59,5 @@ async function display (msg, str) {
 }
 
 function recursiveTextify (e) {
-    return Object.keys(e).map((key, index) => [key, (["string", "boolean", undefined, "number"].includes(typeof Object.values(e)[index]) ? Object.values(e)[index] : recursiveTextify(Object.values(e)[index]))].join(":\n")).join("\n\n");
+    return Object.keys(e).map((key, index) => [key, (["string", "boolean", undefined, "number"].includes(typeof Object.values(e)[index]) ? Object.values(e)[index] : recursiveTextify(Object.values(e)[index]))];
 }
