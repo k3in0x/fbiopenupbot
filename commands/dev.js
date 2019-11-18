@@ -49,7 +49,7 @@ async function display (msg, str) {
         while (typeof evaled.then === "function") {
             evaled = await evaled;
         }
-        let output = [...Discord.splitMessage(recursiveTextify(evaled)]);
+        let output = [...Discord.splitMessage(recursiveTextify(evaled))]);
         output.map(message.channel.send);
     } catch (e) {
         return msg.channel.send(e.stack);
