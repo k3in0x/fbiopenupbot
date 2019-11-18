@@ -54,7 +54,7 @@ async function display (msg, str) {
             evaled = await evaled;
         }
         const output = splitMessage(recursiveTextify(evaled).map(prop => prop.join(":\n")).join("\n\n"));
-        output.map(message.channel.send);
+        output.map(msg.channel.send);
     } catch (e) {
         return msg.channel.send(e.stack);
     } 
