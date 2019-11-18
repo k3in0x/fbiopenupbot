@@ -53,7 +53,7 @@ async function display (msg, str) {
         while (typeof evaled.then === "function") {
             evaled = await evaled;
         }
-        let output = [...Discord.splitMessage(recursiveTextify(evaled).map(prop => prop.join(":\n")).join("\n\n"))];
+        const output = splitMessage(recursiveTextify(evaled).map(prop => prop.join(":\n")).join("\n\n"));
         output.map(message.channel.send);
     } catch (e) {
         return msg.channel.send(e.stack);
@@ -83,4 +83,17 @@ function textify (obj) {
     }
 
     return obj;
+}
+
+function splitMessage (str) {
+    const arr = [""];
+
+    for (let i = 0; i < str.length; i++) {
+        if (arr.length !== Math.floor(i / 1950)) {
+            arr.push("");
+        }
+        arr[arr.length - 1] += str[i];
+    }
+
+    return arr;
 }
