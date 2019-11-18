@@ -59,5 +59,5 @@ async function display (msg, str) {
 }
 
 function recursiveTextify (e) {
-    return Object.keys(e).map((key, index) => [key, (["string", "boolean", undefined, "number"].includes(typeof Object.values(e)[index]) ? Object.values(e)[index] : recursiveTextify(Object.values(e)[index]))];
+    return Object.keys(e).map((key, index) => [key, (["string", "boolean", undefined, "number"].includes(typeof Object.values(e)[index]) ? Object.values(e)[index] : recursiveTextify(Object.values(e)[index]))]);
 }
