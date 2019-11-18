@@ -25,10 +25,12 @@ async function evaluate (msg, str) {
     
     try {
         let evaledText = "";
+        const consolelog = console.log;
         console.log = l => {
             evaledText += l + "\n";
         };
         let evaled = eval(str);
+        console.log = consolelog;
         while (typeof evaled.then === "function") {
             evaled = await evaled;
         }
@@ -51,7 +53,7 @@ async function display (msg, str) {
         while (typeof evaled.then === "function") {
             evaled = await evaled;
         }
-        let output = [...Discord.splitMessage(recursiveTextify(evaled).join(":\n").join("\n\n"))];
+        let output = [...Discord.splitMessage(recursiveTextify(evaled).map(prop => prop.join(":\n")).join("\n\n"))];
         output.map(message.channel.send);
     } catch (e) {
         return msg.channel.send(e.stack);
