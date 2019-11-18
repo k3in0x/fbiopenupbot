@@ -59,5 +59,27 @@ async function display (msg, str) {
 }
 
 function recursiveTextify (e) {
-    return Object.keys(e).map((key, index) => [key, (["string", "boolean", undefined, "number"].includes(typeof Object.values(e)[index]) ? Object.values(e)[index] : recursiveTextify(Object.values(e)[index]))]);
+    return Object.keys(e).map((key, index) => [key, (["string", "boolean", undefined, "number"].includes(typeof Object.values(e)[index]) ? Object.values(e)[index] : textify(Object.values(e)[index]))]);
+}
+
+function textify (obj) {
+    if (obj instanceof Map) {
+        const values = [];
+
+        for (const [key, val] of obj.entries()) {
+            values.push([key, val]);
+        }
+
+        obj = values;
+    }
+
+    if (obj instanceof Object) {
+        const values = Object.values(obj);
+        const keys = Object.keys(obj);
+
+        obj = keys.map((key, index) => [key, values[index]]);
+    }
+
+    if (typeof obj[1] === "object") return [obj[0], textify(obj[1])];
+    return obj;
 }
