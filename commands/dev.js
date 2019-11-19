@@ -91,7 +91,7 @@ function splitMessage (str) {
     const arr = [""];
 
     for (let i = 0; i < str.length; i++) {
-        if (i % 1950 === 0) {
+        if (arr[arr.length - 1].length >= 1950) {
             arr.push("");
         }
         arr[arr.length - 1] += str[i];
