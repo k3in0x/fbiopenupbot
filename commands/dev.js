@@ -65,13 +65,13 @@ function recursiveTextify (e) {
 }
 
 function textify (obj) {
-    if (typeof obj === "array") return obj;
+    if (typeof obj === "array") return obj.join("\n");
 
     if (obj instanceof Map || obj instanceof Discord.Collection) {
         const values = [];
 
         for (const [key, val] of obj.entries()) {
-            values.push([key, (typeof val === "object" ? textify(val) : val)]);
+            values.push([key, /*(typeof val === "object" ? textify(val) : */val/*)*/]);
         }
 
         obj = values;
@@ -81,7 +81,7 @@ function textify (obj) {
         const values = Object.values(obj);
         const keys = Object.keys(obj);
 
-        obj = keys.map((key, index) => [key, (typeof values[index] === "object" ? textify(values[index]) : values[index])]);
+        obj = keys.map((key, index) => [key, /*(typeof values[index] === "object" ? textify(values[index]) : */values[index]/*)*/]);
     }
 
     return obj;
