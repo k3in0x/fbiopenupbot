@@ -65,6 +65,8 @@ function recursiveTextify (e) {
 }
 
 function textify (obj) {
+    if (typeof obj === "array") return obj;
+
     if (obj instanceof Map || obj instanceof Discord.Collection) {
         const values = [];
 
