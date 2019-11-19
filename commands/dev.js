@@ -86,6 +86,8 @@ function textify (obj) {
 }
 
 function splitMessage (str) {
+    if (str.length <= 1950) return [str];
+
     const arr = [""];
 
     for (let i = 0; i < str.length; i++) {
