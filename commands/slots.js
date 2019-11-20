@@ -33,6 +33,7 @@ module.exports = {
             let i = 0;
             const interval = setInterval(() => {
                 if (i >= emojis.length) return clearInterval(interval);
+
                 if (rng1 === i) choice1 = emojis[i];
                 if (rng2 === i) choice2 = emojis[i];
                 if (rng3 === i) choice3 = emojis[i];
