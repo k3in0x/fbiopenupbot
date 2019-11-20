@@ -1,3 +1,5 @@
+const Discord = require("discord.js");
+
 module.exports = {
     name: "slots", 
     description: "Slots with emojis", 
