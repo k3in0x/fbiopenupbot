@@ -7,7 +7,7 @@ module.exports = {
     usage: "%slots [emoji * >=6]",
     
     run: (msg, args) => {
-        const emojis = [];
+        let emojis = [];
 
         if (!args[1]) return msg.channel.send("You need to give at least 6 Unicode emojis to play slots!");
 
@@ -17,6 +17,8 @@ module.exports = {
         });
 
         if (emojis.length < 6) return msg.channel.send("You need to give at least 6 Unicode emojis to play slots!");
+
+        emojis = Array.from(new Set(emojis)).filter((_, i) => i <= 10);
 
         const rng1 = Math.floor(Math.random() * emojis.length);
         const rng2 = Math.floor(Math.random() * emojis.length);
