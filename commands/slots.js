@@ -4,8 +4,7 @@ module.exports = {
     name: "slots", 
     description: "Slots with emojis", 
     type: "fun", 
-    usage: "%slots [emoji * >=6]", 
-    example: {}, 
+    usage: "%slots [emoji * >=6]",
     
     run: (msg, args) => {
         const emojis = [];
@@ -31,7 +30,9 @@ module.exports = {
         .setDescription("`" + emojis[0] + "` `" + emojis[0] + "` `" + emojis[0] + "`");
 
         msg.channel.send({embed: beginEm}).then(mesg => {
-            for (let i = 0; i < emojis.length; i++) {
+            let i = 0;
+            const interval = setInterval(() => {
+                if (i >= emojis.length) return clearInterval(interval);
                 if (rng1 === i) choice1 = emojis[i];
                 if (rng2 === i) choice2 = emojis[i];
                 if (rng3 === i) choice3 = emojis[i];
@@ -62,7 +63,9 @@ module.exports = {
                 } else {
                     mesg.edit({embed: contEm});
                 }
-            }
+
+                i++;
+            }, 1000);
         });
     }
 };
