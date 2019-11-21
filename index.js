@@ -6,7 +6,7 @@ module.exports = client;
 client.on('ready', () => {
     console.log("I'm online :D");
 
-    const presences = ["%help", "in " + client.guilds.size + " servers"];
+    const presences = ["los lloros de mis trabajadores", "in " + client.guilds.size + " servers"];
     
     setInterval(() => {
         client.user.setPresence({
