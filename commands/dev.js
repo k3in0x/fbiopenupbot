@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 module.exports = {
     devonly: true,
     run: function (msg, args) {
-        if (msg.author.id !== "576083686055739394") {
+        if (msg.author.id !== "305284636920119306") {
             return msg.channel.send("You look like a dev dude, succ a dicc plz");
         }
         
