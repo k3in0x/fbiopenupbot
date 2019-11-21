@@ -6,7 +6,7 @@ module.exports = client;
 client.on('ready', () => {
     console.log("I'm online :D");
 
-    const presences = ["los lloros de mis trabajadores", "in " + client.guilds.size + " servers"];
+    const presences = ["Stupidfy Premium", "in " + client.guilds.size + " servers"];
     
     setInterval(() => {
         client.user.setPresence({
@@ -14,7 +14,7 @@ client.on('ready', () => {
                 name: presences[Math.floor(Math.random() * presences.length)],
                 type: Math.floor(Math.random() * 4)
             },
-            status: "absent"
+            status: "idle"
         });
     }, 30 * 60 * 1000);
 });
