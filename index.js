@@ -6,7 +6,7 @@ module.exports = client;
 client.on('ready', () => {
     console.log("I'm online :D");
 
-    const presences = ["| el dinerito fresco", "in " + client.guilds.size + "servers"];
+    const presences = ["oler dinerito fresco"];
     
     setInterval(() => {
         client.user.setPresence({
