@@ -48,7 +48,7 @@ client.on('message', async message =>{
     if(command === 'kun'){
       if (message.member.voice.channel) {
           const connection = await message.member.voice.channel.join();
-          const dispatcher = connection.play('./audio/kun.mp3', {
+          const dispatcher = connection.play('./audio/Kun.mp3', {
               volume: 1,
             });
           await message.delete();
