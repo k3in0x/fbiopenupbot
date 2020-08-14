@@ -11,7 +11,7 @@ const fs = require('fs');
 client.on('ready', () => {
     console.log('FBI está escuchando...');
 
-    client.user.setActivity("conversaciones", {type: "listening"})
+    client.user.setActivity("conversaciones", {type: "LISTENING"})
 
 });
 
@@ -27,13 +27,39 @@ client.on('message', async message =>{
             const dispatcher = connection.play('./audio/fbi.mp3', {
                 volume: 1,
               });
+            await message.delete();
           } else {
             message.reply('Tienes que estar en un canal de voz antes de nada!');
           }
-    }
+    };
+
+    if(command === 'juan'){
+        if (message.member.voice.channel) {
+            const connection = await message.member.voice.channel.join();
+            const dispatcher = connection.play('./audio/juan.mp3', {
+                volume: 1,
+              });
+            await message.delete();
+          } else {
+            message.reply('Tienes que estar en un canal de voz antes de nada!');
+          }
+    };
+
+    if(command === 'kun'){
+      if (message.member.voice.channel) {
+          const connection = await message.member.voice.channel.join();
+          const dispatcher = connection.play('./audio/kun.mp3', {
+              volume: 1,
+            });
+          await message.delete();
+        } else {
+          message.reply('Tienes que estar en un canal de voz antes de nada!');
+        }
+  };
 
     if(command === 'leave'){
         message.guild.me.voice.channel.leave();
+        await message.delete();
     };
 });
 
