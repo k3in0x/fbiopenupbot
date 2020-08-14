@@ -18,7 +18,7 @@ client.on('ready', () => {
 client.on('message', async message =>{
     if(!message.content.startsWith(prefix) || message.author.bot) return;
     if(!message.member.roles.cache.has('743966032712171632')) return message.reply('NO PUEDES CRACK!')
-    .then(msg => message.delete(5000));
+    .then(msg => await message.delete(5000));
 
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
