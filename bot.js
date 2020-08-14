@@ -11,13 +11,15 @@ const fs = require('fs');
 client.on('ready', () => {
     console.log('FBI está escuchando...');
 
-    client.user.setActivity("conversaciones", {type: "listening"})
+    client.user.setActivity("conversaciones", {type: "LISTENING"})
 
 });
 
 client.on('message', async message =>{
     if(!message.content.startsWith(prefix) || message.author.bot) return;
-    if(!message.member.roles.cache.has('743966032712171632')) return message.channel.send('NO PUEDES CRACK!')
+    if(!message.member.roles.cache.has('743966032712171632')) return message.reply('NO PUEDES CRACK!')
+    .then(msg => await message.delete(5000));
+
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
 
@@ -27,13 +29,39 @@ client.on('message', async message =>{
             const dispatcher = connection.play('./audio/fbi.mp3', {
                 volume: 1,
               });
+            await message.delete();
           } else {
             message.reply('Tienes que estar en un canal de voz antes de nada!');
           }
-    }
+    };
+
+    if(command === 'juan'){
+        if (message.member.voice.channel) {
+            const connection = await message.member.voice.channel.join();
+            const dispatcher = connection.play('./audio/juan.mp3', {
+                volume: 1,
+              });
+            await message.delete();
+          } else {
+            message.reply('Tienes que estar en un canal de voz antes de nada!');
+          }
+    };
+
+    if(command === 'kun'){
+      if (message.member.voice.channel) {
+          const connection = await message.member.voice.channel.join();
+          const dispatcher = connection.play('./audio/kun.mp3', {
+              volume: 1,
+            });
+          await message.delete();
+        } else {
+          message.reply('Tienes que estar en un canal de voz antes de nada!');
+        }
+  };
 
     if(command === 'leave'){
         message.guild.me.voice.channel.leave();
+        await message.delete();
     };
 });
 
