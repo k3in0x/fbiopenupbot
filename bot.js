@@ -11,7 +11,7 @@ const fs = require('fs');
 client.on('ready', () => {
     console.log('FBI está escuchando...');
 
-    client.user.setActivity("conversaciones", {type: "LISTENING"})
+    client.user.setActivity("conversations", {type: "LISTENING"})
 
 });
 
