@@ -33,7 +33,7 @@ db.fetchObject(`guildPrefix_${message.guild.id}`).then(i => {
 client.on('ready', () => {
     console.log('FBI BOT ENABLED\n   _______  ____\n  / __/ _ )/  _/\n / _// _  |/ /  \n/_/ /____/___/  ');                 
 
-    client.user.setActivity("fbi help & f!help", {type: "LISTENING"})
+    client.user.setActivity("fbi help", {type: "LISTENING"})
 
 });
 
