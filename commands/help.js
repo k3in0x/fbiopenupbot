@@ -12,7 +12,7 @@ module.exports.run = async (client, message, args) => {
           { name: '**leave:**', value: 'The bot leaves the voice channel.'},
         )
         .setFooter(client.user.username, client.user.displayAvatarURL());
-        message.reply("Sended to DM").then(d_msg => { d_msg.delete({timeout: 3000}); });
+        message.reply("Sent to DM").then(d_msg => { d_msg.delete({timeout: 3000}); });
         message.delete({timeout: 2000});
         message.author.send(embed);
 
