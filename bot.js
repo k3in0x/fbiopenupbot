@@ -15,6 +15,8 @@ client.on('ready', () => {
 
 });
 
+const channelvoice = 'You must first enter the voice channel!';
+
 client.on('message', async message =>{
     if(!message.content.startsWith(prefix) || message.author.bot) return;
     //if(!message.member.roles.cache.has('743966032712171632')) return message.author.send('NO PUEDES CRACK!')
@@ -30,7 +32,7 @@ client.on('message', async message =>{
               });
             await message.delete();
           } else {
-            message.reply('Tienes que estar en un canal de voz antes de nada!');
+            message.reply(channelvoice);
           }
     };
 
@@ -42,7 +44,7 @@ client.on('message', async message =>{
               });
             await message.delete();
           } else {
-            message.reply('Tienes que estar en un canal de voz antes de nada!');
+            message.reply(channelvoice);
           }
     };
 
@@ -54,7 +56,7 @@ client.on('message', async message =>{
             });
           await message.delete();
         } else {
-          message.reply('Tienes que estar en un canal de voz antes de nada!');
+          message.reply(channelvoice);
         }
   };
 
